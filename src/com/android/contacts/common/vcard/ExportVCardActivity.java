@@ -51,6 +51,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     private static final String LOG_TAG = "VCardExport";
     protected static final boolean DEBUG = VCardService.DEBUG;
     private static final int REQUEST_CREATE_DOCUMENT = 100;
+    private String selExport = "";
 
     /**
      * True when this Activity is connected to {@link VCardService}.
@@ -106,6 +107,10 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
             showErrorDialog();
         }
         // Continued to onServiceConnected()
+        Intent selExportIntent = getIntent();
+        if(selExportIntent != null) {
+            selExport = selExportIntent.getStringExtra("SelExport");
+        }
     }
 
     private boolean hasExportIntentHandler() {
